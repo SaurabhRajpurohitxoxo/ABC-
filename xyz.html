@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saurabh Rajpurohit - Resume</title>
+    <style>
+        :root {
+            --primary-color: #0f172a; /* Dark Blue */
+            --secondary-color: #1e293b; /* Medium Blue */
+            --accent-color: #3b82f6; /* Bright Blue Accent */
+            --text-main: #334155; /* Slate Gray for main text */
+            --text-light: #64748b; /* Lighter text */
+            --bg-light: #f8fafc; /* Crisp White/Gray background */
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Top Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: calc(100% - 300px);
+            height: 60px;
+            background-color: var(--white);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0 2rem;
+            z-index: 100;
+        }
+
+        nav a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Layout Container */
+        .container {
+            display: flex;
+            margin-top: 60px;
+            flex: 1;
+        }
+
+        /* Left Sidebar */
+        aside {
+            width: 300px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            z-index: 200;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            border: 4px solid var(--accent-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            margin-top: 1rem;
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        aside h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        aside .subtitle {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            line-height: 1.4;
+        }
+
+        .contact-info {
+            width: 100%;
+            text-align: left;
+            border-top: 1px solid var(--secondary-color);
+            padding-top: 1.5rem;
+        }
+
+        .contact-item {
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-item span {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            margin-bottom: 0.2rem;
+        }
+
+        .contact-item a, .contact-item p {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            word-break: break-all;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Right Main Content */
+        main {
+            margin-left: 300px;
+            padding: 3rem;
+            width: calc(100% - 300px);
+            max-width: 1000px;
+        }
+
+        section {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 8px;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            scroll-margin-top: 90px; /* offset for nav bar */
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--bg-light);
+            padding-bottom: 0.5rem;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        .objective-text {
+            line-height: 1.6;
+            color: var(--text-main);
+        }
+
+        /* Timeline/Experience Styling */
+        .timeline-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .role-title {
+            font-weight: 700;
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+
+        .company-name {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .duration {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            background: var(--bg-light);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .timeline-body ul {
+            list-style-type: none;
+        }
+
+        .timeline-body li {
+            position: relative;
+            padding-left: 1.2rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .timeline-body li::before {
+            content: "•";
+            color: var(--accent-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* Education Table Styling */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background-color: var(--bg-light);
+            color: var(--primary-color);
+            padding: 0.75rem 1rem;
+            font-weight: 700;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #e2e8f0;
+            color: var(--text-main);
+        }
+
+        tr:hover td {
+            background-color: #fcfdfe;
+        }
+
+        /* Interactive Skills Section */
+        .filter-buttons {
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .filter-btn {
+            background-color: var(--bg-light);
+            border: 1px solid #cbd5e1;
+            color: var(--text-main);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: var(--white);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-card {
+            background: var(--bg-light);
+            padding: 1rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+            transition: transform 0.2s, opacity 0.3s;
+        }
+
+        .skill-card.advanced {
+            border-left-color: var(--accent-color);
+        }
+
+        .skill-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            margin-bottom: 0.25rem;
+        }
+
+        .skill-level {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        /* Certifications & Co-curricular List */
+        .info-list {
+            list-style-type: none;
+        }
+
+        .info-list li {
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .info-list li::before {
+            content: "✓";
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            nav {
+                width: 100%;
+                justify-content: center;
+                padding: 0 1rem;
+            }
+            nav a {
+                margin: 0 0.75rem;
+                font-size: 0.85rem;
+            }
+            aside {
+                position: relative;
+                width: 100%;
+                height: auto;
+                padding: 2rem 1rem;
+            }
+            .container {
+                flex-direction: column;
+                margin-top: 60px;
+            }
+            main {
+                margin-left: 0;
+                width: 100%;
+                padding: 1.5rem;
+            }
+            .timeline-header {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+            .duration {
+                align-self: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#objective">Objective</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#certifications">Certifications</a>
+    </nav>
+
+    <div class="container">
+        <aside>
+            <div class="profile-img">
+                Photo Placeholder
+            </div>
+            <h1>Saurabh Rajpurohit</h1>
+            <div class="subtitle">CA Intermediate (Both Groups Cleared)<br>Seeking Articleship</div>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>Email</span>
+                    <a href="mailto:rajpurohitsaurabh2003@gmail.com">rajpurohitsaurabh2003@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <span>Phone</span>
+                    <a href="tel:+917878730526">+91 78787 30526</a>
+                </div>
+                <div class="contact-item">
+                    <span>Location</span>
+                    <p>Jodhpur, Rajasthan</p>
+                </div>
+                <div class="contact-item">
+                    <span>LinkedIn</span>
+                    <a href="https://www.linkedin.com/in/saurabh-rajpurohit0324" target="_blank">saurabh-rajpurohit0324</a>
+                </div>
+                <div class="contact-item">
+                    <span>Languages</span>
+                    <p>English, Hindi, Marwadi</p>
+                </div>
+            </div>
+        </aside>
+
+        <main>
+            <section id="objective">
+                <h2>Career Objective</h2>
+                <p class="objective-text">
+                    I am seeking an articleship opportunity to apply my knowledge of accounting, taxation, auditing, and financial regulations while gaining hands-on experience across diverse domains. I aim to sharpen my analytical thinking, build strong compliance instincts, and develop the kind of judgement that actually matters in practice while growing into a Chartered Accountant who brings real value to the table.
+                </p>
+            </section>
+
+            <section id="experience">
+                <h2>Work Experience</h2>
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="role-title">Intern</div>
+                            <div class="company-name">Finstreet India LLP</div>
+                        </div>
+                        <div class="duration">Jan 2025 - Mar 2025</div>
+                    </div>
+                    <div class="timeline-body">
+                        <ul>
+                            <li>Observed and assisted in drafting basic legal and compliance documents including share certificates, resolutions, gift deeds, and letters to income tax authorities.</li>
+                            <li>Gained basic exposure to income tax computations such as capital gain, advance tax, and income tax projection under supervision.</li>
+                            <li>Prepared a client awareness presentation on Mutual Funds for a seminar organised by the firm and assisted in retrieving live market and historical data using MS Excel and Google Sheets.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="education">
+                <h2>Education Qualification</h2>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Course/Examination</th>
+                                <th>Institution/University</th>
+                                <th>Year of Passing</th>
+                                <th>Marks</th>
+                                <th>Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>CA Intermediate Group 1</strong></td>
+                                <td>ICAI</td>
+                                <td>Jan 2026</td>
+                                <td>51%</td>
+                                <td>1 Exemption</td>
+                            </tr>
+                            <tr>
+                                <td><strong>CA Intermediate Group 2</strong></td>
+                                <td>ICAI</td>
+                                <td>Sept 2025</td>
+                                <td>50%</td>
+                                <td>1 Exemption</td>
+                            </tr>
+                            <tr>
+                                <td><strong>B.Com.</strong></td>
+                                <td>Jai Narayan Vyas University, Jodhpur</td>
+                                <td>2024</td>
+                                <td>53%</td>
+                                <td>Passed with second division</td>
+                            </tr>
+                            <tr>
+                                <td><strong>CA Foundation</strong></td>
+                                <td>ICAI</td>
+                                <td>Dec 2021</td>
+                                <td>53%</td>
+                                <td>Cleared in first attempt</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Class XII</strong></td>
+                                <td>RBSE</td>
+                                <td>2021</td>
+                                <td>93.4%</td>
+                                <td>90+ in all subjects</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Class X</strong></td>
+                                <td>RBSE</td>
+                                <td>2019</td>
+                                <td>84.6%</td>
+                                <td>Distinction in all subjects</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="skills">
+                <h2>Technical & Soft Skills</h2>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="filterSkills('all')">All Skills</button>
+                    <button class="filter-btn" onclick="filterSkills('advanced')">Advanced</button>
+                    <button class="filter-btn" onclick="filterSkills('intermediate')">Intermediate</button>
+                </div>
+                
+                <div class="skills-grid" id="skillsContainer">
+                    <div class="skill-card advanced" data-level="advanced">
+                        <div class="skill-name">MS Office</div>
+                        <div class="skill-level">Advanced (Proficient)</div>
+                    </div>
+                    <div class="skill-card advanced" data-level="advanced">
+                        <div class="skill-name">Problem Solving Approach</div>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                    <div class="skill-card advanced" data-level="advanced">
+                        <div class="skill-name">Team Coordination</div>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                    <div class="skill-card advanced" data-level="advanced">
+                        <div class="skill-name">Effective Communication</div>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+
+                    <div class="skill-card intermediate" data-level="intermediate">
+                        <div class="skill-name">Tally ERP 9</div>
+                        <div class="skill-level">Intermediate (Working Knowledge)</div>
+                    </div>
+                    <div class="skill-card intermediate" data-level="intermediate">
+                        <div class="skill-name">CompuTax</div>
+                        <div class="skill-level">Intermediate (Working Knowledge)</div>
+                    </div>
+                    <div class="skill-card intermediate" data-level="intermediate">
+                        <div class="skill-name">Accounting Standards</div>
+                        <div class="skill-level">Intermediate (Basic Knowledge)</div>
+                    </div>
+                    <div class="skill-card intermediate" data-level="intermediate">
+                        <div class="skill-name">Companies Act Provisions</div>
+                        <div class="skill-level">Intermediate (Basic Knowledge)</div>
+                    </div>
+                    <div class="skill-card intermediate" data-level="intermediate">
+                        <div class="skill-name">Income Tax & GST</div>
+                        <div class="skill-level">Intermediate (Basic Knowledge)</div>
+                    </div>
+                    <div class="skill-card intermediate" data-level="intermediate">
+                        <div class="skill-name">Standards on Auditing</div>
+                        <div class="skill-level">Intermediate (Basic Knowledge)</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="certifications">
+                <h2>Certifications & Trainings</h2>
+                <ul class="info-list">
+                    <li><strong>TallyAcademy Certified Accountant</strong> on Tally ERP 9 by Tally Academy.</li>
+                    <li><strong>RSCIT</strong> (Rajasthan State Certificate in IT) by VMOU, Kota.</li>
+                    <li>Completed <strong>90 Hours of Orientation course training</strong> conducted by ICAI.</li>
+                    <li>Completed <strong>90 Hours of Information Technology course</strong> conducted by ICAI.</li>
+                </ul>
+            </section>
+
+            <section id="cocurricular">
+                <h2>Co-Curricular Activities</h2>
+                <ul class="info-list">
+                    <li>Elected <strong>Class Representative</strong> multiple times in school, demonstrating leadership and peer trust.</li>
+                    <li>Actively participated in <strong>cultural events</strong> in school, contributing to team coordination and event management.</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        function filterSkills(level) {
+            // Update active status on buttons
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+
+            // Filter items
+            const cards = document.querySelectorAll('.skill-card');
+            cards.forEach(card => {
+                if (level === 'all') {
+                    card.style.display = 'block';
+                    setTimeout(() => card.style.opacity = '1', 10);
+                } else {
+                    if (card.getAttribute('data-level') === level) {
+                        card.style.display = 'block';
+                        setTimeout(() => card.style.opacity = '1', 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.display = 'none';
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
